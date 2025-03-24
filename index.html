@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jay Andrew Dacup - Portfolio</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #2e3c8a, #34b6c8);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover, nav a.active-link {
+            background-color: #ff9800;
+            transform: scale(1.05);
+        }
+
+        /* Home Section */
+        #home {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 80px; /* Reduced space between navbar and content */
+        }
+
+        #home img {
+            width: 150px; /* Reduced image size */
+            height: 150px; /* Reduced image size */
+            border-radius: 50%;
+            border: 4px solid #fff;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease;
+        }
+
+        #home img:hover {
+            transform: scale(1.05);
+        }
+
+        #home h1 {
+            font-size: 2rem; /* Reduced font size */
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #home p {
+            font-size: 1rem; /* Reduced font size */
+            color: #e1e1e1;
+            max-width: 500px;
+            margin-top: 10px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hire Me Button */
+        .hire-me {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #ff9800;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            animation: balloonEffect 2s infinite ease-in-out; /* Balloon effect animation */
+        }
+
+        .hire-me:hover {
+            background-color: #e68900;
+        }
+
+        /* Balloon-like Animation (Inflating and Deflating) */
+        @keyframes balloonEffect {
+            0% {
+                transform: scale(1); /* Initial size */
+            }
+            25% {
+                transform: scale(1.1); /* Slight inflation */
+            }
+            50% {
+                transform: scale(1.3); /* Maximum inflation */
+            }
+            75% {
+                transform: scale(1.1); /* Slight deflation */
+            }
+            100% {
+                transform: scale(1); /* Return to original size */
+            }
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+            padding: 30px 15px; /* Reduced padding */
+            margin-top: 80px; /* Increased margin-top for spacing */
+            background: rgba(0, 0, 0, 0.6);
+            width: 85%; /* Reduced width */
+            margin: 0 auto;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .active {
+            display: block;
+            opacity: 1;
+        }
+
+        .section h1 {
+            font-size: 2rem; /* Reduced font size */
+            color: #ff9800;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            font-size: 1rem; /* Reduced font size */
+            color: #fff;
+            line-height: 1.5;
+        }
+
+        /* Contact Section */
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .contact a {
+            color: #fff;
+            font-size: 18px; /* Reduced font size */
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .contact a:hover {
+            color: #ff9800;
+        }
+
+        .contact img {
+            width: 25px; /* Reduced size */
+            height: 25px; /* Reduced size */
+        }
+
+        /* Hover Effects for Section Content */
+        .see-more {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #ff9800;
+            border-radius: 25px;
+            color: white;
+            border: none;
+            font-size: 1rem; /* Reduced font size */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .see-more:hover {
+            background-color: #e68900;
+            transform: scale(1.05);
+        }
+
+        /* Photo Gallery */
+        .photo-gallery img {
+            width: 100%;
+            max-width: 250px; /* Reduced max-width */
+            margin: 10px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            margin-top: 40px; /* Reduced margin-top */
+            color: #fff;
+            font-size: 0.9rem; /* Reduced font size */
+            opacity: 0.7;
+        }
+
+        footer a {
+            color: #ff9800;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            nav {
+                padding: 10px 0;
+            }
+
+            .section {
+                width: 90%; /* Slightly adjusted for smaller screens */
+            }
+
+            #home img {
+                width: 130px; /* Smaller image */
+                height: 130px; /* Smaller image */
+            }
+
+            #home h1 {
+                font-size: 1.8rem; /* Smaller font size */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home" onclick="showSection('home', this)">Home</a>
+        <a href="#about" onclick="showSection('about', this)">About</a>
+        <a href="#skills" onclick="showSection('skills', this)">Skills</a>
+        <a href="#contact" onclick="showSection('contact', this)">Contact</a>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <img src="pic4.png" alt="Jay Andrew Dacup's Photo">
+        <h1>Welcome to My Portfolio</h1>
+        <p>Hello! I'm Jay Andrew Dacup, and this is my personal portfolio. Explore my journey and skills!</p>
+        <button class="hire-me" onclick="showSection('contact', this)">Hire Me</button> <!-- Hire Me Button -->
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h1>About Me</h1>
+        <p>I am a student passionate about music, strength training, and web development.</p>
+        <button class="see-more" onclick="showMoreContent('about')">See More</button>
+        <div id="more-about" style="display: none;">
+            <p>I have been coding for over a year, and my favorite languages are JavaScript, HTML, and CSS. I also love exploring new technologies and building interesting projects.</p>
+            
+            <div class="photo-gallery">
+                <img src="photo1.jpg" alt="Photo 1">
+                <img src="photo2.jpg" alt="Photo 2">
+                <img src="photo3.jpg" alt="Photo 3">
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h1>My Skills</h1>
+        <ul style="list-style: none; padding: 0;">
+            <li>🎸 Guitar Playing</li>
+            <li>💻 Web Development</li>
+            <li>💪 Strength Training</li>
+        </ul>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h1>Contact Me</h1>
+        <div class="contact">
+            <a href="mailto:dacupjayandrew@gmail.com">
+                <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="Gmail Logo"> Email Me
+            </a>
+            <a href="https://www.facebook.com/share/1BKYrJuHop/" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook Logo"> Facebook Profile
+            </a>
+            <a href="https://www.tiktok.com/@andreeewww09" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok Logo"> TikTok Profile
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>All rights reserved &copy; <a href="#">Jay Andrew Dacup</a></p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function showSection(sectionId, linkElement) {
+            var sections = document.querySelectorAll(".section");
+            var navLinks = document.querySelectorAll("nav a");
+
+            sections.forEach(function(section) {
+                section.classList.remove("active");
+            });
+
+            var selectedSection = document.getElementById(sectionId);
+            selectedSection.classList.add("active");
+
+            navLinks.forEach(function(link) {
+                link.classList.remove("active-link");
+            });
+            linkElement.classList.add("active-link");
+        }
+
+        function showMoreContent(section) {
+            var moreContent = document.getElementById("more-about");
+            moreContent.style.display = moreContent.style.display === "none" ? "block" : "none";
+            event.target.innerText = moreContent.style.display === "none" ? "See More" : "See Less";
+        }
+    </script>
+
+</body>
+</html>
