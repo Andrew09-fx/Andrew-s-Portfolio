@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sira-Sira Store - Total Payables and Change</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin:5px;;
+}
+.container2 {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+.container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .error {
+            color:red;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+
+    
+
+    <div class="container">
+        <h1>Sira-Sira Store Total Payables</h1>
+
+        <label for="apple">Enter number of apples sold:<br>
+            Apple price:50
+        </label>
+         <input type="number" id="apple" placeholder="Quantity of apples" min="0">
+        
+        <label for="orange">Enter number of oranges sold:<br>Orange price:40</label>
+        <input type="number" id="orange" placeholder="Quantity of oranges" min="0">
+        
+        <label for="watermelon">Enter number of watermelons sold:<br>Watermelon price:100</label>
+        <input type="number" id="watermelon" placeholder="Quantity of watermelons" min="0">
+        
+        <label for="payment">Enter amount paid:</label>
+        <input type="number" id="payment" placeholder="Amount paid" min="0">
+        
+        <button onclick="calculateTotal()">Calculate Total Payable and Change</button>
+
+        <div id="result" class="result"></div>
+        <div id="change" class="result"></div>
+        <div id="error" class="error"></div>
+        
+ 
+    
+    </div>
+    <script>
+        // Prices of the fruits
+        const applePrice = 50; // Price per apple
+        const orangePrice = 40; // Price per orange
+        const watermelonPrice = 100; // Price per watermelon
+
+        function calculateTotal() {
+            // Get the values from the inputs
+            const appleQuantity = parseInt(document.getElementById("apple").value) || 0;
+            const orangeQuantity = parseInt(document.getElementById("orange").value) || 0;
+            const watermelonQuantity = parseInt(document.getElementById("watermelon").value) || 0;
+            const payment = parseFloat(document.getElementById("payment").value) || 0;
+
+            // Calculate the total payables for each fruit
+            const appleTotal = appleQuantity * applePrice;
+            const orangeTotal = orangeQuantity * orangePrice;
+            const watermelonTotal = watermelonQuantity * watermelonPrice;
+
+            // Calculate the grand total
+            const totalPayable = appleTotal + orangeTotal + watermelonTotal;
+
+         
+               // Display the results for payables
+               document.getElementById("result").innerHTML = `
+                <p>Apples: ₱${appleTotal}</p>
+                <p>Oranges: ₱${orangeTotal}</p>
+                <p>Watermelons: ₱${watermelonTotal}</p>
+                <p><strong>Total Payable: ₱${totalPayable}</strong></p>
+            `;
+            // Calculate the change
+            if (payment >= totalPayable) {
+                const change = payment - totalPayable;
+                document.getElementById("change").innerHTML = `<p>Change: ₱${change.toFixed(2)}</p>`;
+                document.getElementById("error").innerHTML = "";
+            } else {
+                document.getElementById("change").innerHTML = "";
+                document.getElementById("error").innerHTML = "Error: Insufficient payment. Please enter a valid amount.";
+            }
+        }
+        
+
+
+
+    </script>
+</body>
+</html>
+
